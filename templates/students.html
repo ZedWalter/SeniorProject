@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Student</title>
+{% endblock %}
+
+{% block body %}
+
+
+<div class="content">
+    <h1 style="text-align: center">Students</h1>
+    {% if students|length < 1%}
+    <h4 style="text-align: center">There are no students. Please add one below!</h4>
+    {% else %}
+
+    <table class="table">
+        <tr class="header">
+            <th>Student</th>
+            <th>Route</th>
+            <th>Actions</th>
+        </tr>
+        {% for student in students %}
+            <tr>
+                <td>
+                    <a class="linkable" href="/studentexpanded/{{student.id}}">{{ student.first_name }} {{ student.last_name }}</a>
+                </td>
+                <td>
+                    <a class="linkable" href="/routesexpanded/{{student.route_id}}">{{ routes[student.route_id].route }}</a>
+                </td>
+                <td>
+                    <a class="edit"href="/editstudent/{{student.id}}">Edit</a>
+                    <a> | </a>
+                    <a class="delete" href="/removestudent/{{student.id}}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <div class="addbutton" onclick="reroute('addstudent')">
+        <h1 class="buttontext"> Add Student</h1>
+    </div>
+</div>
+
+<script>
+    function test() {
+        
+        console.log("test")
+    }
+
+    function reroute(url) {
+
+        location.href = url
+    }
+
+
+
+</script>
+
+{% endblock %}

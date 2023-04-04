@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Admin View</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="content">
+
+    <div class="addbutton" onclick="reroute('students')">
+        <h1 class="buttontext"> Students</h1>
+    </div>
+
+    <div class="addbutton" onclick="reroute('drivers')">
+        <h1 class="buttontext"> Drivers</h1>
+    </div>
+
+    <div class="addbutton" onclick="reroute('routes')">
+        <h1 class="buttontext"> Route</h1>
+    </div>
+
+</div>
+
+<script>
+    function test() {
+        
+        console.log("test")
+    }
+
+    function reroute(url) {
+
+        location.href = url
+    }
+
+
+
+</script>
+{% endblock %}

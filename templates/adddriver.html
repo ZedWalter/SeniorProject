@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Add Driver</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="form">
+        <form action="/adddriver" method="POST">
+            <label for="fname">First Name</label>
+            <input class="fname" type="text " name="first_name" id="first_name" placeholder="First name" required>
+            <label for="lname">Last Name</label>
+            <input class="lname" type="text" name="last_name" placeholder ="Last name" id="last_name" required>
+            <label for="birth">Date of Birth</label>
+            <input class="birth" type="date" name="dob" id="dob" required>
+            <label for="condition">Health Conditions</label>
+            <input class="condition" type="text" name="conditions" id="conditions">
+            <input class="submit" type="submit" value="Add Driver">
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

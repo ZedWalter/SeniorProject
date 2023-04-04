@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Add Student</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="form">
+        <form action="/addstudent" method="POST">
+            <label for="fname">First Name</label>
+            <input class="fname" type="text " name="first_name" placeholder="First name" id="first_name" required>
+            <label for="lname">Last Name</label>
+            <input class="lname" type="text" name="last_name" placeholder ="Last name" id="last_name" required>
+            <label for="birth">Date of Birth</label>
+            <input class="birth" type="date" name="dob" id="dob" required>
+            <label for="number">Phone Number</label>
+            <input class="number" type="number" name="contact_info" placeholder="123-456-7890" id="contact_info" required>
+            <label for="number">Bus Route</label>
+            <select class="number" name="route_id" id="route_id" required>
+                <option disabled selected value> -- select an option -- </option>
+                {% for route in routes %}
+                <option value = '{{ route.id }}'>{{ route.route }}</option>
+                {% endfor %}
+            </select>
+            <label for="condition">Health Conditions</label>
+            <input class="condition" type="text" name="conditions" id="conditions">
+            <input class="submit" type="submit" value="Add Student">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

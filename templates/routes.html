@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Routes</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="content">
+    <h1 style="text-align: center">Routes</h1>
+    {% if routes|length < 1%}
+    <h4 style="text-align: center">There are no routes. Please add one below!</h4>
+    {% else %}
+
+    <table class="table">
+        <tr class="header">
+            <th>Routes</th>
+            <th>Driver</th>
+            <th>Actions</th>
+        </tr>
+        {% for route in routes %}
+            <tr>
+                <td>
+                    <a class="linkable" href="/routesexpanded/{{route.id}}"> {{ route.route }} </a>    
+                </td>
+
+                <td>{{ drivers[route.driver_id].first_name }} {{ drivers[route.driver_id].last_name }}</td>
+                
+                <td>
+                    <a class="edit" href="/editroute/{{route.id}}">Edit</a>
+                    <a> | </a>
+                    <a class="delete" href="/removeroute/{{route.id}}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    
+    <div class="addbutton" onclick="reroute('addroute')">
+        <h1 class="buttontext"> Add Route</h1>
+    </div>
+</div>
+
+<script>
+    function test() {
+        
+        console.log("test")
+    }
+
+    function reroute(url) {
+
+        location.href = url
+    }
+
+
+
+</script>
+
+{% endblock %}

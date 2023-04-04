@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Drivers</title>
+{% endblock %}
+
+{% block body %}
+
+
+<div class="content">
+    <h1 style="text-align: center">Drivers</h1>
+    {% if drivers|length < 1%}
+    <h4 style="text-align: center">There are no Drivers. Please add one below!</h4>
+    {% else %}
+
+    <table class="table">
+        <tr class="header">
+            <th>Driver</th>
+            <th>Route</th>
+            <th>Date of Birth</th>
+            <th>Conditions</th>
+            <th>Actions</th>
+        </tr>
+        {% for driver in drivers %}
+            <tr>
+                <td>{{ driver.first_name }} {{ driver.last_name }}</td>
+                <td>
+                    {% if routes[driver.id] is defined %}
+                    <a  class="linkable" href="/routesexpanded/{{routes[driver.id].id}}">{{ routes[driver.id].route }}</a>
+                    {% else %}
+                    <a></a>
+                    {% endif %}
+                </td>
+                <td>{{ driver.dob }}</td>
+                <td>{{ driver.conditions}}</td>
+                <td class="actions">
+                    <a class="edit" href="/editdriver/{{driver.id}}">Edit</a>
+                    <a> | </a>
+                    <a class="delete" href="/removedriver/{{driver.id}}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <div class="addbutton" onclick="reroute('adddriver')">
+        <h1 class="buttontext"> Add Driver</h1>
+    </div>    
+</div>
+
+
+<script>
+    function test() {
+        
+        console.log("test")
+    }
+
+    function reroute(url) {
+
+        location.href = url
+    }
+
+
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Bus Route</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="form">
+        <form action="/overridestudent/{{route_help.route_id}}" method="POST">
+            <select name="student" id="student">
+                <option disabled selected value> -- select an option -- </option>
+                {% for student in all_students %}
+                <option value = '{{ student.id }}'>{{ student.first_name }} {{ student.last_name }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Onboard" onclick="return confirm_override()">
+        </form>
+    </div>
+
+
+    <table class="table">
+        <tr class="header">
+            <th>Students OFF bus</th>
+            <th>Change Status</th>
+        </tr>
+        {% for student in students %}
+            {% if student.on_bus == False %}
+                <tr>
+                    <td>{{ student.first_name }} {{ student.last_name }}</td>
+                    <td>
+                        <a class="linkable" href="/routeboarding/{{student.id}}">Onboard</a>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div>
+
+
+<div class="form">
+    <form action="/offloadstudents/{{route_help.route_id}}" method="POST">
+        <input class="offload" type="submit" value="Offload all">
+    </form>
+</div>
+
+
+<div class="content">
+    <table class="table">
+        <tr class="header">
+            <th>Students ON bus</th>
+            <th>Change Status</th>
+        </tr>
+        {% for student in students %}
+        {% if student.on_bus == True %}
+        <tr>
+            <td>{{ student.first_name }} {{ student.last_name }}</td>
+            <td>
+                <a class="linkable" href="/routeboarding/{{student.id}}">Deboard</a>
+            </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+</div>
+
+<script>
+    function test() {
+        
+        console.log("test")
+    }
+
+    function confirm_override() {
+        if (confirm('This student does not belong on this bus. This will permanently change the route of this student to route {{current_route.route}}. Confirm change?') == true) { 
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    function warning_popup() {
+        alert("HAHA alert box go Brrrrrrrrrrr");
+        return true;
+    }
+
+</script>
+{% endblock %}

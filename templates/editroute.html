@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Edit Route</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Edit Route</h1>
+
+
+    <div class="form">
+        <form action="/editroute/{{route.id}}" method="POST">
+            <label for="number">Route number</label>
+            <input class="number" type="text" name="route" id="route" value="{{route.route}}"required>
+            <label for="number">Bus Driver</label>
+            <select class="number" name="driver_id" id="driver_id" required>
+                {% for driver in drivers %}
+                    {% if driver.id == route.driver_id %}
+                        <option value="{{driver.id}}" selected>{{ driver.first_name }}, {{ driver.last_name }}</option>
+                    {% else %}
+                        <option value="{{driver.id}}" >{{ driver.first_name }}, {{ driver.last_name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <input class="submit" type="submit" value="Edit Route">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

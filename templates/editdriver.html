@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Edit Driver</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Edit Driver</h1>
+
+
+    <div class="form">
+        <form action="/editdriver/{{driver.id}}" method="POST">
+            <label for="fname">First Name</label>
+            <input class="fname" type="text " name="first_name" id="first_name" value="{{driver.first_name}}" required>
+            <label for="lname">Last Name</label>
+            <input class="lname" type="text" name="last_name" id="last_name" value="{{driver.last_name}}" required>
+            <label for="birth">Date of Birth</label>
+            <input class="birth" type="date" name="dob" id="dob" value="{{driver.dob}}" required>
+            <label for="condition">Health Conditions</label>            
+            <input class="condition" type="text" name="conditions" id="conditions" value="{{driver.conditions}}">
+            <input class="submit" type="submit" value="Update">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

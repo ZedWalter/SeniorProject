@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Student Query</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="content">
+    <h1 style="text-align: center">Students Information</h1>
+
+    <div class="card">
+        <div class="cardcontent">
+            <div class="name">{{ student.first_name }} {{ student.last_name }}</div>
+            <div class="dob">DOB: {{ student.dob }}</div>
+            <div class="contact">Parent Contact Info: {{ student.contact_info }}</div>
+            <div class="status">On Bus: {{ student.on_bus }}</div>
+            <div class="health">Health Conditions: {{ student.conditions }}</div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function test() {
+        
+        console.log("test")
+    }
+
+    function reroute(url) {
+
+        location.href = url
+    }
+
+
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Edit Student</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Edit Student</h1>
+
+
+    <div class="form">
+        <form action="/editstudent/{{student.id}}" method="POST">
+            <label for="fname">First Name</label>
+            <input class="fname" type="text " name="first_name" id="first_name" value="{{student.first_name}}" required>
+            <label for="lname">Last Name</label>
+            <input class="lname" type="text" name="last_name" id="last_name" value="{{student.last_name}}" required>
+            <label for="birth">Date of Birth</label>
+            <input class="birth" type="date" name="dob" id="dob" value="{{student.dob}}" required>
+            <label for="number">Phone Number</label>
+            <input class="number" type="number" name="contact_info" id="contact_info" value="{{student.contact_info}}" required>
+            <label for="number">Bus Route</label>
+            <select class="number" name="route_id" id="route_id" required>
+                {% for route in routes %}
+                    {% if route.id == student.route_id %}
+                        <option value = '{{ route.id }}' selected>{{ route.route }}</option>
+                    {% else %}                
+                        <option value = '{{ route.id }}'>{{ route.route }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <label for="condition">Health Conditions</label>
+            <input class="condition" type="text" name="conditions" id="conditions" value="{{student.conditions}}">
+            <input class="submit" type="submit" value="Update">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
